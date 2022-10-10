@@ -1,4 +1,6 @@
-The Toolchain.
+##Author
+Mohsin Tahir
+##The Toolchain.
 
 The purpose of this lab is to introduce you to the Linux (unix) command line tools. We will specifically use:
 Git for document versioning and management (c++ files in our case)
@@ -33,3 +35,5 @@ main()
 11.	Compile using -g -O0 switches
 12.	Step through code using gdb
 13.	Use Doxygen to generate documentation for the helloThreads.cpp code
+##License
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.

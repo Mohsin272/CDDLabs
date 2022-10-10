@@ -1,10 +1,6 @@
-The README file is a text filw that explains what a project is.
-It should contain information on
-
-1. Project Licence
-2. Authors of Project
-3. How to install project
-4. List of any required Libraries, platform issues, etc.
-5. TO DO section listing items that need to be completed (errors, missing features etc.)
-6. List of files and what they contain
-7. Any other relevent information
+#1. Project Licence
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+#2. Authors of Project
+Mohsin Tahir
+#3. Project Information 
+This is first introduction lab with semaphores. Manage threads using mutex locks.
