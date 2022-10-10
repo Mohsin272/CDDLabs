@@ -1,6 +1,6 @@
-#1. Project Licence
+# Project Licence
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
-#2. Authors of Project
+# Authors of Project
 Mohsin Tahir
-#3. Project Information 
+# Project Information 
 This is first introduction lab with semaphores. Manage threads using mutex locks.
