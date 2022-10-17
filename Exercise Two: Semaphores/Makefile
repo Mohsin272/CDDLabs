@@ -2,7 +2,7 @@
 #Lab 2 Makefile
 #Used to contain commands to compile projects
 #License : This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
-	
+
 CC=g++
 CFLAGS= -std=c++11 -pthread
 
@@ -10,8 +10,8 @@ CFLAGS= -std=c++11 -pthread
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-ALL: main.o
-	$(CC) -o main main.o $(CFLAGS) $(DEBUGFLAGS)
+ALL: main.o Semaphore.o
+	$(CC) -o myexe main.o Semaphore.o $(CFLAGS)  $(DEBUGFLAGS)
 
 DEBUG: DEBUGFLAGS = -DDEBUG
 DEBUG: ALL
