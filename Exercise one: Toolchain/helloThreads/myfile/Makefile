@@ -12,9 +12,9 @@ CFLAGS= -std=c++11 -pthread
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-#This rule says that to compile and create an output file called helloThreads.
-ALL: helloThreads.o
-	$(CC) -o helloThreads helloThreads.o $(CFLAGS) $(DEBUGFLAGS)
+#This rule says that to compile and create an output file called myexe.
+ALL: myfile.o
+	$(CC) -o myexe myfile.o $(CFLAGS) $(DEBUGFLAGS)
 
 #This rule outlines the debug file to be used 
 DEBUG: DEBUGFLAGS = -g -O0

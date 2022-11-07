@@ -1,5 +1,8 @@
 ## Author
 Mohsin Tahir
+## License
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 ## The Toolchain.
 
 The purpose of this lab is to introduce you to the Linux (unix) command line tools. We will specifically use:
