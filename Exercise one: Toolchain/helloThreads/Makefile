@@ -1,8 +1,10 @@
-#Joseph Kehoe 13/9/2017
-#Second improved Makefile
+#Mohsin Tahir 10/10/2022
+#Lab 2 Makefile
 #Used to contain commands to compile projects
-#Equivalent(?) to a project file in VStudio -- only better!
-#See http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ for info.
+#License : This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 
+#International License. To view a copy of this license, 
+#visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, 
+#PO Box 1866, Mountain View, CA 94042, USA.
 
 
 CC=g++

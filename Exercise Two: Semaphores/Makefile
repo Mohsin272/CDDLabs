@@ -18,7 +18,7 @@ ALL: main.o Semaphore.o
 	$(CC) -o myexe main.o Semaphore.o $(CFLAGS)  $(DEBUGFLAGS)
 	
 #This rule outlines the debug file to be used by including debugging and removing optimisation
-DEBUG: DEBUGFLAGS = -DDEBUG
+DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
 #this is customary and just deletes all .o files
