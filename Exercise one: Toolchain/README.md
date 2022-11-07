@@ -1,42 +1,28 @@
-## Author
-Mohsin Tahir
-## License
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+# Lab 1: Toolchain
+<b>Brief:</b> <i>This lab demonstrates the basic use of emacs and the debugger.
 
-## The Toolchain.
+1. <b>Project Licence:</b> <i>This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.</i>	
+2. <b>Authors of Project:</b>
+	- <b>Student:</b> Mohsin Tahir
+	- <b>Lecturer:</b> Joseph Kehoe
+3. <b>Student Number:</b> C00250220
+4. <b>Institution:</b> SETU Carlow
+5. <b>Date:</b> 07/11/22<br>
 
-The purpose of this lab is to introduce you to the Linux (unix) command line tools. We will specifically use:
-Git for document versioning and management (c++ files in our case)
-Emacs for editing
-g++ for compiling
-gdb for debugging
-Make for managing code projects
-Doxygen for documenting code
-
-I will go through the following steps with you:
-
-1.	Download the complete set of files using git to clone https://github.com/josephkehoe/CDD101
-(If you are reading this then you have done this already ;-)
-2.  	Find and open the file helloThreads.cpp using emacs (the graphical version of emacs is easier to use for beginners)
-3.	Customise emacs to suit your tastes and examine the code to make sure you understand it
-4.	Compile the file from the command line using the command "g++ -std=c++11 -pthread helloThreads.cpp"
-5.	Run the file and check the output making sure you understand what has occured
-6.	Copy the file Makefile1 to Makefile and examine using emacs
-7.	Reopen helloThreads.cpp and try the compile option
-8.	Copy the file Makefile2 to Makefile and examine using emacs
-9.	Repeat for Makefile3
-10.	Create a file containing the following code
-#include <stdio.h>
- 
-main()
-{
-        int i;
-        for(i=0;i<10;i++)
-                printf("%d",i);
-}
-
-11.	Compile using -g -O0 switches
-12.	Step through code using gdb
-13.	Use Doxygen to generate documentation for the helloThreads.cpp code
-## License
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+6. <b>How to install project:</b>
+	- run <b>make</b> file in terminal
+	- run <b>./helloThreads</b><br>
+	
+7. <b>List of any required Libraries, platform issues, etc.:</b>
+	- <b>Linux</b> - Environment
+	- <b>g++</b> - Compiler
+	- <b>emacs</b> - Editor
+	- <b>make</b> - For creating Makefile
+	- <b>gdb</b> - Debugger
+	- <b>doxygen</b> - Code documentation (optional)
+	
+8. <b>List of files and what they contain:</b>
+	- <b>helloThreads.cpp</b> - the main project class
+	- <b>makefile</b> - compiling program
+	- <b>README</b> - about the lab file
+	
