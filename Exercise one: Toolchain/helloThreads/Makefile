@@ -16,7 +16,7 @@ CFLAGS= -std=c++11 -pthread
 ALL: helloThreads.o
 	$(CC) -o helloThreads helloThreads.o $(CFLAGS) $(DEBUGFLAGS)
 
-#This rule outlines the debug file to be used 
+#This rule outlines the debug file to be used by including debugging and removing optimisation
 DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
