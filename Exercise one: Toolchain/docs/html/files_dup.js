@@ -1,4 +1,5 @@
 var files_dup =
 [
-    [ "helloThreads", "dir_34226101de2f4fc63904cc648a09d6e8.html", "dir_34226101de2f4fc63904cc648a09d6e8" ]
+    [ "myfile", "dir_b7fefb843fa476065c4f6382f840c073.html", "dir_b7fefb843fa476065c4f6382f840c073" ],
+    [ "helloThreads.cpp", "hello_threads_8cpp.html", "hello_threads_8cpp" ]
 ];

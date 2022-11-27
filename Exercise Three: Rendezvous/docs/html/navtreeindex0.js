@@ -25,8 +25,6 @@ var NAVTREEINDEX0 =
 "main_8cpp.html#ac7cb6b39082835c7e3c853c42af9ecdc":[2,0,0,2],
 "main_8cpp.html#ad43c3812e6d13e0518d9f8b8f463ffcf":[2,0,0,3],
 "main_8cpp_source.html":[2,0,0],
-"md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__three___rendezvous__r_e_a_d_m_e.html":[0],
-"md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__three___rendezvous__r_e_a_d_m_e.html#autotoc_md1":[0,0],
-"md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__three___rendezvous__r_e_a_d_m_e.html#autotoc_md2":[0,1],
+"md__r_e_a_d_m_e.html":[0],
 "pages.html":[]
 };

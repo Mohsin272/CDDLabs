@@ -25,10 +25,7 @@
 var NAVTREE =
 [
   [ "Exercise Two - Semaphores", "index.html", [
-    [ "Project License", "md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__two___semaphores__r_e_a_d_m_e.html", [
-      [ "Authors of Project", "md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__two___semaphores__r_e_a_d_m_e.html#autotoc_md1", null ],
-      [ "Project Information", "md__home_mohsin__desktop__concurrent__development__c_d_d_labs__exercise__two___semaphores__r_e_a_d_m_e.html#autotoc_md2", null ]
-    ] ],
+    [ "Lab 2: Semaphores", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

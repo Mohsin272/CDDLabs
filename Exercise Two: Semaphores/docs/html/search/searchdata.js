@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "mprstw",
+  0: "lmrstw",
   1: "s",
   2: "mrs",
   3: "mstw",
-  4: "p"
+  4: "l"
 };
 
 var indexSectionNames =

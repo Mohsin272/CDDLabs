@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Exercise Four: Mutual Exclusion", "index.html", [
+    [ "Lab 4: Mutual Exclusion", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
