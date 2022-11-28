@@ -46,6 +46,50 @@
 // Code:
 #include "Semaphore.h"
 #include "Barrier.h"
+#include <iostream>
+
+int count =0;
+
+Barrier::Barrier (int numThreads){
+    numThreads=numThreads;
+}
+Barrier::~Barrier()
+{
+}
+
+void Barrier::wait(){
+
+    Semaphore mutex(1);
+    Semaphore innerdoor(0);
+    Semaphore outerdoor(1);
+
+    mutex.Wait();//Mutex for shared variables 
+	count++;
+	mutex.Signal();
+	
+	if (count == numThreads) 
+    { // when last thread arrives
+		outerdoor.Wait();//takes 1 away and now sets to 0 so door is closed now
+		
+		innerdoor.Signal();//opens the inner door now 
+	}
+	innerdoor.Wait();//closes inner door now once everyones arrived
+	
+	innerdoor.Signal();
+	
+	mutex.Wait();
+	count --;
+	mutex.Signal();
+	
+	if ( count ==0 )
+    {//checks if everyones in the airlock now 
+		innerdoor.Wait();//closes inner door
+		outerdoor.Signal();//opens outer door
+	}
+	outerdoor.Wait(); //if not everyones arrived in airlock
+	outerdoor.Signal();
+
+}
 
 
 // 
