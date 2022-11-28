@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Exercise Three - Rendezvous", "index.html", [
-    [ "Lab 3: Rendezvous", "md__r_e_a_d_m_e.html", null ],
+    [ "Lab 3: Rendezvous", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

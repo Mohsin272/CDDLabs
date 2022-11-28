@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Exercise Two - Semaphores", "index.html", [
-    [ "Lab 2: Semaphores", "md__r_e_a_d_m_e.html", null ],
+    [ "Lab 2: Semaphores", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
