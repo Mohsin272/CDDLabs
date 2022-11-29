@@ -44,12 +44,71 @@
 
 /* Code: */
 #pragma once
+#include "Semaphore.h"
+/**
+ * @brief Barrier class definition
+ * 
+ */
 class Barrier{
+  /**
+   * @brief variable used to store how many threads being used
+   */
   int numThreads;
+  /**
+   * @brief count used to count the number of threads have reched and passed the barrier.
+   * 
+   */
+  int count;
+  /**
+   * @brief Semaphore used as mutex and initialised to 1
+   * 
+   */
+  Semaphore mutex{1};
+  /**
+   * @brief Semaphore used for managing the first door and initialsed as 0
+   * 
+   */
+  Semaphore innerdoor{0};
+  /**
+   * @brief Semaphore used for managin the outerdoor and is intialised as 1
+   * 
+   */
+  Semaphore outerdoor{1};
  public:
+ /**
+  * @brief Construct a new Barrier object
+  * 
+  * @param numThreads 
+  */
   Barrier(int numThreads);
+  /**
+   * @brief Set the Threads object
+   * 
+   * @param numThreads 
+   */
+  void setThreads(int numThreads);
+  /**
+   * @brief Get the Threads object
+   * 
+   * @return int 
+   */
+  int getThreads(void);
+  /**
+   * @brief Destroy the Barrier object
+   * 
+   */
   virtual ~Barrier();
-  void wait();  
+  /**
+   * @brief Defining the phase1 method
+   * 
+   * @return * void 
+   */
+  void phase1();
+  /**
+   * @brief Defining the phase2 method 
+   * 
+   */
+  void phase2();
 };
 
 

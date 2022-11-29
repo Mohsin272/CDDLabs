@@ -47,50 +47,79 @@
 #include "Semaphore.h"
 #include "Barrier.h"
 #include <iostream>
-
-int count =0;
-
-Barrier::Barrier (int numThreads){
-    numThreads=numThreads;
+/**
+ * @brief Construct a new Barrier:: Barrier object
+ * 
+ * @param numofThreads The number of threads being used for the program 
+ */
+Barrier::Barrier (int numofThreads)
+{
+	 count =0;
+     numThreads=numofThreads;
 }
+/**
+ * @brief Setter method for the numofThreads value
+ * 
+ * @param numofThreads 
+ */
+void Barrier::setThreads(int numofThreads){
+	numThreads=numofThreads;
+}
+/**
+ * @brief Getter method for numofThreads value
+ * 
+ * @return int 
+ */
+int Barrier::getThreads(void){
+	return numThreads;
+}
+/**
+ * @brief Destroy the Barrier:: Barrier object
+ * 
+ */
 Barrier::~Barrier()
 {
 }
-
-void Barrier::wait(){
-
-    Semaphore mutex(1);
-    Semaphore innerdoor(0);
-    Semaphore outerdoor(1);
-
-    mutex.Wait();//Mutex for shared variables 
-	count++;
-	mutex.Signal();
-	
-	if (count == numThreads) 
-    { // when last thread arrives
-		outerdoor.Wait();//takes 1 away and now sets to 0 so door is closed now
-		
-		innerdoor.Signal();//opens the inner door now 
-	}
-	innerdoor.Wait();//closes inner door now once everyones arrived
-	
-	innerdoor.Signal();
-	
+/**
+ * @brief phase1:: This is the first phase of the barrier. All threads go through and wait at 
+ * rendezvous point
+ * 
+ */
+void Barrier::phase1()
+{
 	mutex.Wait();
-	count --;
+	count+=1;
 	mutex.Signal();
-	
-	if ( count ==0 )
-    {//checks if everyones in the airlock now 
-		innerdoor.Wait();//closes inner door
-		outerdoor.Signal();//opens outer door
+
+	if(count == numThreads)
+	{
+		std::cout<<""<<std::endl;
+		outerdoor.Wait();
+		innerdoor.Signal();
 	}
-	outerdoor.Wait(); //if not everyones arrived in airlock
+	innerdoor.Wait();
+	innerdoor.Signal();
+}
+/**
+ * @brief pahse2:: This is the second phase of the barrier. Once all threads have arrived at rendezvous 
+ * point they are then released
+ * 
+ */
+void Barrier::phase2()
+{
+	mutex.Wait();
+	count-=1;
+	mutex.Signal();
+	if (count == 0)
+	{
+		std::cout<<""<<std::endl;
+		innerdoor.Wait();
+		outerdoor.Signal();
+	}
+	//mutex.Signal();
+	outerdoor.Wait();
 	outerdoor.Signal();
 
 }
-
-
 // 
 // Barrier.cpp ends here
