@@ -1,5 +1,5 @@
 #Mohsin Tahir 24/11/2022
-#Lab 4 Makefile
+#Lab 5 Makefile
 #Used to contain commands to compile projects
 #License : This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 \
 International License. To view a copy of this license, \

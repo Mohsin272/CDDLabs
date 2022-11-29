@@ -87,47 +87,53 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="title">main.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_barrier_8h.html">Barrier.h</a>&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 100;</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">    7</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a>=0;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">   14</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a>(std::shared_ptr&lt;Barrier&gt; theBarrier, <span class="keywordtype">int</span> numLoops){</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;numLoops;++i){</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">//Do first bit of task</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;A&quot;</span>&lt;&lt; i;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">//Barrier</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    theBarrier-&gt;phase1();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">//Do second half of task</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::cout&lt;&lt; <span class="stringliteral">&quot;B&quot;</span> &lt;&lt; i;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    theBarrier-&gt;phase2();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   28</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  std::vector&lt;std::thread&gt; vt(num_threads);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  std::shared_ptr&lt;Barrier&gt; aBarrier( <span class="keyword">new</span> <a class="code" href="class_barrier.html">Barrier</a>(num_threads));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordtype">int</span> i=0;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; t: vt){</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    t=std::thread(<a class="code" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a>,aBarrier,5);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; v :vt){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      v.join();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  std::cout &lt;&lt; <a class="code" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Author Mohsin Tahir</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// License = This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// International License. To view a copy of this license, </span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// PO Box 1866, Mountain View, CA 94042, USA.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// Date 29/11/2022</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_barrier_8h.html">Barrier.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> num_threads = 100;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">   13</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a>=0;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a>(std::shared_ptr&lt;Barrier&gt; theBarrier, <span class="keywordtype">int</span> numLoops){</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;numLoops;++i){</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">//Do first bit of task</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;A&quot;</span>&lt;&lt; i;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">//Barrier</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    theBarrier-&gt;phase1();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//Do second half of task</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::cout&lt;&lt; <span class="stringliteral">&quot;B&quot;</span> &lt;&lt; i;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    theBarrier-&gt;phase2();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   34</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  std::vector&lt;std::thread&gt; vt(num_threads);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  std::shared_ptr&lt;Barrier&gt; aBarrier( <span class="keyword">new</span> <a class="code" href="class_barrier.html">Barrier</a>(num_threads));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordtype">int</span> i=0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; t: vt){</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    t=std::thread(<a class="code" href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a>,aBarrier,5);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; v :vt){</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      v.join();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  std::cout &lt;&lt; <a class="code" href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="ttc" id="a_barrier_8h_html"><div class="ttname"><a href="_barrier_8h.html">Barrier.h</a></div></div>
-<div class="ttc" id="aclass_barrier_html"><div class="ttname"><a href="class_barrier.html">Barrier</a></div><div class="ttdoc">Barrier class definition.</div><div class="ttdef"><b>Definition:</b> <a href="_barrier_8h_source.html#l00052">Barrier.h:52</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a2d5b01367ae1267dfac47c7875aac5e4"><div class="ttname"><a href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a></div><div class="ttdeci">int sharedVariable</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00007">main.cpp:7</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a580d368c0a2a099cd3ad0c49deb1d3fa"><div class="ttname"><a href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a></div><div class="ttdeci">void barrierTask(std::shared_ptr&lt; Barrier &gt; theBarrier, int numLoops)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00014">main.cpp:14</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00028">main.cpp:28</a></div></div>
+<div class="ttc" id="aclass_barrier_html"><div class="ttname"><a href="class_barrier.html">Barrier</a></div><div class="ttdoc">Barrier class definition.</div><div class="ttdef"><b>Definition:</b> <a href="_barrier_8h_source.html#l00029">Barrier.h:29</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a2d5b01367ae1267dfac47c7875aac5e4"><div class="ttname"><a href="main_8cpp.html#a2d5b01367ae1267dfac47c7875aac5e4">sharedVariable</a></div><div class="ttdeci">int sharedVariable</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00013">main.cpp:13</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a580d368c0a2a099cd3ad0c49deb1d3fa"><div class="ttname"><a href="main_8cpp.html#a580d368c0a2a099cd3ad0c49deb1d3fa">barrierTask</a></div><div class="ttdeci">void barrierTask(std::shared_ptr&lt; Barrier &gt; theBarrier, int numLoops)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00020">main.cpp:20</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00034">main.cpp:34</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

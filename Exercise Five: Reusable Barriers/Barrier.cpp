@@ -1,33 +1,10 @@
-// Barrier.cpp --- 
-// 
-// Filename: Barrier.cpp
-// Description: 
-// Author: Joseph
-// Maintainer: 
-// Created: Tue Jan  8 12:14:02 2019 (+0000)
-// Version: 
-// Package-Requires: ()
-// Last-Updated: Tue Jan  8 12:15:21 2019 (+0000)
-//           By: Joseph
-//     Update #: 2
-// URL: 
-// Doc URL: 
-// Keywords: 
-// Compatibility: 
-// 
-// 
+// Author Mohsin Tahir
+// License = This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 
+// International License. To view a copy of this license, 
+// visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, 
+// PO Box 1866, Mountain View, CA 94042, USA.
+// Date 29/11/2022
 
-// Commentary: 
-// 
-// 
-// 
-// 
-
-// Change Log:
-// 
-// 
-// 
-// 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or (at
@@ -40,8 +17,6 @@
 // 
 // You should have received a copy of the GNU General Public License
 // along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-// 
-// 
 
 // Code:
 #include "Semaphore.h"
