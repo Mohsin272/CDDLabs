@@ -22,28 +22,7 @@ void taskOne(std::shared_ptr<Semaphore> firstSem,std::shared_ptr<Semaphore>  sec
   std::this_thread::sleep_for(std::chrono::seconds(delay));
   std::cout <<"Task One has arrived! "<< std::endl;
   firstSem->Signal();
-  //increasing count everytime a thread is passed through 
-  firstSem->Wait();
-  count =count +1;
-  firstSem->Signal();
-  
-  if (count == 2){//if both threads have passed through then second semaphore is unlocked
-  	secondSem->Signal();
-  }
-  
-  secondSem->Wait();//if not then wait
-  secondSem->Signal();
-  
-  firstSem->Wait();//count decreases until both threads have passed and turned it to 0
-  count =count --;
-  firstSem->Signal();
-  
-   if (count == 0){ 
-    secondSem->Signal();// once all threads have passed throughh second Semaphore is unlocked
-  }
   secondSem->Wait();
-  secondSem->Signal();//rest of code can not execute
-  
   //THIS IS THE RENDEZVOUS POINT!
   std::cout << "Task One has left!"<<std::endl;
 }
@@ -51,31 +30,9 @@ void taskOne(std::shared_ptr<Semaphore> firstSem,std::shared_ptr<Semaphore>  sec
 /*! displays a message that is split in to 2 sections to show how a rendezvous works*/
 void taskTwo(std::shared_ptr<Semaphore> firstSem, std::shared_ptr<Semaphore> secondSem, int delay){
   std::this_thread::sleep_for(std::chrono::seconds(delay));
-  firstSem->Wait();
-  std::cout <<"Task Two has arrived "<<std::endl;
-  firstSem->Signal();
-  //increasing count everytime a thread is passed through 
-  firstSem->Wait();
-  count =count +1;
-  firstSem->Signal();
-  
-  if (count == 2){//if both threads have passed through then second semaphore is unlocked
-  	secondSem->Signal();
-  }
-  
-  secondSem->Wait();//if not then wait
-  secondSem->Signal();
-  
-   firstSem->Wait();//count decreases until both threads have passed and turned it to 0
-  count =count --;
-  firstSem->Signal();
-  
-    if (count == 0){
-  	secondSem->Signal();// once all threads have passed throughh second Semaphore is unlocked
-  }
-  secondSem->Wait();
-  secondSem->Signal();//rest of code can not execute
-  
+   firstSem->Wait();
+   std::cout <<"Task Two has arrived "<<std::endl;
+   secondSem->Signal();
   //THIS IS THE RENDEZVOUS POINT!
   std::cout << "Task Two has left "<<std::endl;
 }
