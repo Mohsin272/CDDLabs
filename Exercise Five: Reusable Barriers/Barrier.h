@@ -38,39 +38,11 @@ class Barrier{
    */
   Semaphore outerdoor{1};
  public:
- /**
-  * @brief Construct a new Barrier object
-  * 
-  * @param numThreads 
-  */
   Barrier(int numThreads);
-  /**
-   * @brief Set the Threads object
-   * 
-   * @param numThreads 
-   */
   void setThreads(int numThreads);
-  /**
-   * @brief Get the Threads object
-   * 
-   * @return int 
-   */
   int getThreads(void);
-  /**
-   * @brief Destroy the Barrier object
-   * 
-   */
   virtual ~Barrier();
-  /**
-   * @brief Defining the phase1 method
-   * 
-   * @return * void 
-   */
   void phase1();
-  /**
-   * @brief Defining the phase2 method 
-   * 
-   */
   void phase2();
 };
 

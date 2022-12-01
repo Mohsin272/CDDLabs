@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Exercise Five: Reusable Barrier", "index.html", [
+  [ "Exercise Five: Reusable Barriers", "index.html", [
     [ "Lab 5: Reusable Barrier", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

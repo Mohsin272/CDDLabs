@@ -10,7 +10,7 @@
 #include "Barrier.h"
 #include <iostream>
 /**
- * @brief Construct a new Barrier:: Barrier object
+ * @brief Constructs a new Barrier object
  * 
  * @param numofThreads The number of threads being used for the program 
  */
@@ -20,7 +20,7 @@ Barrier::Barrier (int numofThreads)
      numThreads=numofThreads;
 }
 /**
- * @brief Setter method for the numofThreads value
+ * @brief Setter method to set the numofThreads value
  * 
  * @param numofThreads 
  */
@@ -28,7 +28,7 @@ void Barrier::setThreads(int numofThreads){
 	numThreads=numofThreads;
 }
 /**
- * @brief Getter method for numofThreads value
+ * @brief Getter method to return the numofThreads value
  * 
  * @return int 
  */
@@ -36,7 +36,7 @@ int Barrier::getThreads(void){
 	return numThreads;
 }
 /**
- * @brief Destroy the Barrier:: Barrier object
+ * @brief Destroys the Barrier object
  * 
  */
 Barrier::~Barrier()
