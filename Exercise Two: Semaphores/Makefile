@@ -15,7 +15,7 @@ CFLAGS= -std=c++11 -pthread
 
 #This rule says that to compile and create an output file called myexe.
 ALL: main.o Semaphore.o
-	$(CC) -o myexe main.o Semaphore.o $(CFLAGS)  $(DEBUGFLAGS)
+	$(CC) -o signal main.o Semaphore.o $(CFLAGS)  $(DEBUGFLAGS)
 	
 #This rule outlines the debug file to be used by including debugging and removing optimisation
 DEBUG: DEBUGFLAGS = -g -O0
