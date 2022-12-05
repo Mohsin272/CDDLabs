@@ -43,7 +43,35 @@
  */
 
 /* Code: */
+#pragma once
+#include "SafeBuffer.h"
+#include <unistd.h>
 
+class Event{
+ public:
+  Event(int i);
+  virtual ~Event();
+  void createEvent(int i);
+  char printRandomString();
+};
 
+Event::Event (int i){
+    char res ;
+    res=printRandomLetter();
+    unsigned int microsecond = 1000000;
+    usleep(1.5* microsecond);
+    //std::cout<<i<<":"<<res<<std::endl;
+}
+Event::~Event(){
 
+}
+char printRandomLetter()
+{
+    char c;
+    int r;
+    srand (time(NULL));
+    r = rand() % 26;
+    c = 'a' + r;        
+    return c;
+}
 /* Event.h ends here */

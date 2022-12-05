@@ -44,6 +44,12 @@
 
 /* Code: */
 
-
+class SafeBuffer{
+ public:
+  SafeBuffer();
+  virtual ~SafeBuffer();
+  void get();
+  void consume();
+};
 
 /* SafeBuffer.h ends here */

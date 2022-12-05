@@ -13,15 +13,13 @@ const int size=20;
     \brief Creates events and adds them to buffer
 */
 
-void producer(std::shared_ptr<SafeBuffer<std::shared_ptr<Event>> theBuffer, int numLoops){
+void producer(std::shared_ptr<SafeBuffer<std::shared_ptr Event>> theBuffer, int numLoops){
 
   for(int i=0;i<numLoops;++i){
     //Produce event and add to buffer
-    Event e= createEvent(i);
+    Event e= Event(i);
     theBuffer.put(e);
   }
-  
-
 }
 
 /*! \fn consumer
