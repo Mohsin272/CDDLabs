@@ -1,33 +1,3 @@
-/* SafeBuffer.h --- 
- * 
- * Filename: SafeBuffer.h
- * Description: 
- * Author: Joseph
- * Maintainer: 
- * Created: Tue Jan  8 12:30:23 2019 (+0000)
- * Version: 
- * Package-Requires: ()
- * Last-Updated: Tue Jan  8 12:30:25 2019 (+0000)
- *           By: Joseph
- *     Update #: 1
- * URL: 
- * Doc URL: 
- * Keywords: 
- * Compatibility: 
- * 
- */
-
-/* Commentary: 
- * 
- * 
- * 
- */
-
-/* Change Log:
- * 
- * 
- */
-
 /* This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
@@ -41,15 +11,30 @@
  * You should have received a copy of the GNU General Public License
  * along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+/*! \page SafeBuffer.h
+    \file SafeBuffer.h
+    \author Mohsin Tahir
+    \date 09/12/2022
+    \copyright This code is covered by the GNU General Public License v3.0
+    \name SafeBuffer.h
+    Declaring the SafeBuffer Object
+*/
 /* Code: */
+#pragma once
+#include "Event.h"
+#include "Semaphore.h"
+#include <vector>
 
-class SafeBuffer{
- public:
-  SafeBuffer();
-  virtual ~SafeBuffer();
-  void get();
-  void consume();
+class SafeBuffer
+{
+    private:
+        std::vector<Event> buffer; //vector will be used to store the characters
+        std::shared_ptr<Semaphore> mutex;
+        std::shared_ptr<Semaphore> sem;
+        int count;
+
+    public:
+        SafeBuffer();
+        int put(Event);
+        Event get();
 };
-
-/* SafeBuffer.h ends here */

@@ -13,8 +13,8 @@ CFLAGS= -std=c++11 -pthread
 %.o: %.cpp
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-ALL: main.o Semaphore.o
-	$(CC) -o myexe main.o Semaphore.o $(CFLAGS)  $(DEBUGFLAGS)
+ALL: main.o Semaphore.o SafeBuffer.o Event.o
+	$(CC) -o myexe main.o Semaphore.o SafeBuffer.o Event.o $(CFLAGS)  $(DEBUGFLAGS)
 
 DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
@@ -22,3 +22,6 @@ DEBUG: ALL
 #this is customary and just deletes all .o files
 CLEAN:
 	rm *.o
+
+DOC:
+	doxygen Doxyfile.txt
