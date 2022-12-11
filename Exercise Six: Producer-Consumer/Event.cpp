@@ -17,14 +17,15 @@ char Event::printRandomLetter()
 
 Event::Event (){
     randomChar=printRandomLetter();
-    //unsigned int microsecond = 1000000;
-    //usleep(1.0* microsecond);
+    unsigned int microsecond = 1000000;
+    usleep(1.0* microsecond);
     std::cout <<randomChar<<std::endl;
 }
 
-void Event::consume()//convert Them to uppcase first to detect capital X
+void Event::consume()//convert Them to uppcase to check if consumed
 {
     char randomCharUpper = randomChar-32;    
-    std::cout << randomCharUpper<<std::endl;
+    std::cout << "Consumed = " <<randomCharUpper<<std::endl;
+
 }
 /* Event.h ends here */

@@ -46,6 +46,8 @@ int SafeBuffer::put(Event randomChar)
     mutex->Wait();
     buffer.push_back(randomChar);
     int size = buffer.size();
+    std::cout<<"Produced"<<std::endl;
+    std::cout<<"vector size = "<<buffer.size()<<std::endl;
     mutex->Signal();
     sem->Signal();
     return size;
@@ -63,6 +65,7 @@ Event SafeBuffer::get()
     mutex->Wait();
     Event e = buffer.back();
     buffer.pop_back();
+    //std::cout<<"vector size = "<<buffer.size()<<std::endl;
     mutex->Signal();
     return e;
 }

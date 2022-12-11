@@ -5,7 +5,7 @@
 #include <vector>
 
 
-static const int num_threads = 10;
+static const int num_threads = 5;
 const int size=20;
 
 
@@ -19,7 +19,6 @@ void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
     //Produce event and add to buffer
     Event e;
     theBuffer->put(e);
-    std::cout<<"Produced"<<std::endl;
   }
 }
 
@@ -34,7 +33,6 @@ void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
     Event e;
     e = theBuffer->get();
     e.consume();
-    std::cout<<"Consumed"<<std::endl;
   }
   
 
