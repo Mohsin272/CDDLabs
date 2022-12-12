@@ -23,49 +23,46 @@
     \name SafeBuffer implementation
     Implementing the SafeBuffer
 */
-/*! \class SafeBuffer
-    \brief A safe buffer that implements a mutual exclusion on the access to it and has
-    the waits and signals used by the semaphore to organise their flow
-    A Buffer of Events created using a vector and has a mutex used for mutual exclusion 
-    and a semaphore to control the flow between producers and consumers
-*/
 SafeBuffer::SafeBuffer()
 {
     mutex = std::make_shared<Semaphore>(1);
     sem = std::make_shared<Semaphore>(0);
+    printMutex = std::make_shared<Semaphore>(1);
 }
-/*!
-    \fn SafeBuffer::push(Event newChar)
-    \brief the push function used to insert an event into the buffer
-    \param newChar An event object created which is a lower case character
-    SafeBuffer push function. Engages an mutex lock, adds an event object onto the buffer, releases the mutex lock 
-    and then signals the consumers to let wake one up ready to consume produced object
-*/
+
+void SafeBuffer::checkSize(int size){
+    if (buffer.size()==(size-1)){
+        Event e;
+        e.randomChar='X';
+        buffer.push_back(e);
+        std::cout <<"Added X"<<std::endl;
+    }
+    
+}
+
 int SafeBuffer::put(Event randomChar)
 {
     mutex->Wait();
     buffer.push_back(randomChar);
     int size = buffer.size();
-    std::cout<<"Produced"<<std::endl;
-    std::cout<<"vector size = "<<buffer.size()<<std::endl;
+    //printMutex->Wait();
+    std::cout <<"Produced event"<<std::endl;
+    std::cout<<"Added to vector, size = "<<buffer.size()<<std::endl;
+    //printMutex->Signal();
     mutex->Signal();
     sem->Signal();
     return size;
 }
-/*!
-    \fn SafeBuffer::pop()
-    \brief the pop function used to consume an event from the buffer
-    SafeBuffer pop function. Has a wait() to make sure they do not proceed while nothing is nothing to consume
-    Engages an mutex lock, takes the Event from the buffer and performs an operation of changing it to an uppercase character 
-    then releases the mutex lock once its operations get complete
-*/
+
 Event SafeBuffer::get()
 {
     sem->Wait();
     mutex->Wait();
     Event e = buffer.back();
     buffer.pop_back();
-    //std::cout<<"vector size = "<<buffer.size()<<std::endl;
+    //printMutex->Wait();
+    std::cout<<"Consumed from vector, size = "<<buffer.size()<<std::endl;
+    //printMutex->Signal();
     mutex->Signal();
     return e;
 }

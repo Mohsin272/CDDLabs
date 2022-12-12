@@ -23,12 +23,11 @@
 
 /* Code: */
 #pragma once
-class Event{
-    private:
-        char randomChar;
+class Event{ 
     public:
         Event();
         void consume();
         char printRandomLetter();
+        char randomChar;
 };
 /* Event.h ends here */

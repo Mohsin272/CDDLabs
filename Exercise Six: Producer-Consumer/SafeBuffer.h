@@ -31,10 +31,13 @@ class SafeBuffer
         std::vector<Event> buffer; //vector will be used to store the characters
         std::shared_ptr<Semaphore> mutex;
         std::shared_ptr<Semaphore> sem;
+        std::shared_ptr<Semaphore> printMutex;
         int count;
 
     public:
         SafeBuffer();
         int put(Event);
+        void checkSize(int size);
         Event get();
+
 };
