@@ -17,11 +17,12 @@ char Event::printRandomLetter()
 }
 
 Event::Event (){
+    randomChar='a'+rand()%26;
     //mainMutex.Wait();
-    randomChar=printRandomLetter();
-    unsigned int microsecond = 1000000;
-    usleep(1.0* microsecond);
-    //std::cout <<"Produced "<<randomChar<<std::endl;
+    // randomChar=printRandomLetter();
+    // unsigned int microsecond = 1000000;
+    // usleep(1.0* microsecond);
+    std::cout <<"Produced "<<randomChar<<std::endl;
     //mainMutex.Signal();
 }
 

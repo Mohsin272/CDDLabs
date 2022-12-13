@@ -5,12 +5,13 @@
 #include <thread>
 #include <vector>
 
-Semaphore m(1);
 static const int num_threads = 30;
 const int size=20;
 Semaphore countMutex(size);
+Semaphore m(1);
+Semaphore m2(1);
 int count=0;
-
+bool space=true;
 
 /*! \fn producer
     \brief Creates events and adds them to buffer
@@ -19,62 +20,13 @@ int count=0;
 void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
  
   for(int i=0;i<numLoops;++i){
+      m.Wait();
       countMutex.Wait();
-      //m.Wait();
-      //count++;
-      //m.Signal();
-
-        Event e;
-
-        theBuffer->put(e);
-
-      //Event e;
       theBuffer->checkSize(size);
-      // cunt --;
-      countMutex.Signal();
-    //Produce event and add to buffer 
-    //m.Wait();
-    // countMutex.Wait();
-    // count ++;
-    // countMutex.Signal();
-    // std::cout<<"count = "<<count<<std::endl;
-    // if (count == size){
-    //   Event e;
-    //   e.createX();
-    //   theBuffer->put(e);
-    // }
-    //countMutex.Wait();
-  //   m.Wait();
-  //   count++;
-  //  m.Signal();
-  //   if(count != size)
-  //   {
-      // Event e;
-      // theBuffer->put(e); 
-  //   }
-  //   else if (count == size){
-  //     count=0;
-  //     Event e;
-  //     e.createX();
-  //     theBuffer->buffer.push_back(e);
-  //     count=0;
-  //   } 
-  // while(isSpace==true){
-  //     Event e;
-  //     theBuffer->put(e); 
-
-  //     if(count == size){
-  //       m.Wait();
-  //       isSpace=false;
-  //       m.Signal();
-        
-  //     }
-  //     count =0;
-  // }
-    //countMutex.Signal();
-     //m.Signal();
+      Event e;
+      theBuffer->put(e);
+      m.Signal();
   }
- 
 }
 
 /*! \fn consumer
@@ -82,28 +34,22 @@ void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
 */
 
 void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
-  //mainMutex.Wait();
   for(int i=0;i<numLoops;++i){
     //Produce event and add to buffer
-    //m.Wait();
+    m2.Wait();
     Event e;
     e = theBuffer->get();
     e.consume();
-    // m.Wait();
-    // isSpace=true;
-    // m.Signal();
-    //m.Signal();
+    countMutex.Signal();
+    m2.Signal();
   }
- // mainMutex.Signal();
-  
-
 }
 
 int main(void){
 
   std::vector<std::thread> producers(num_threads);
   std::vector<std::thread> consumers(num_threads);
-  std::shared_ptr<SafeBuffer> aBuffer( new SafeBuffer());
+  std::shared_ptr<SafeBuffer> aBuffer( new SafeBuffer(size));
   /**< Launch the threads  */
   int i=0;
   for(std::thread& prod: producers)
