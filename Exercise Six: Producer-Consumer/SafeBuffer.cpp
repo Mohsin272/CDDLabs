@@ -27,26 +27,32 @@ SafeBuffer::SafeBuffer(int size)
 {
     mutex = std::make_shared<Semaphore>(1);
     sem = std::make_shared<Semaphore>(0);
-    locked = std::make_shared<Semaphore>(0);
     BufferSize=size;
 }
 
-void SafeBuffer::checkSize(int BufferSize){
-    if (buffer.size()==BufferSize-1){
-        Event e;
-        e.randomChar='X';
-        buffer.push_back(e);
-        std::cout <<"Added X"<<std::endl;
-        //locked->Signal();
-    }
-}
+// void SafeBuffer::checkSize(int BufferSize){
+//     if (buffer.size()==BufferSize){
+//         Event e;
+//         e.randomChar='X';
+//         buffer.push_back(e);
+//         std::cout <<"BUffer LImit Reached Added X"<<std::endl;
+//     }
+// }
 
-int SafeBuffer::put(Event randomChar)
+int SafeBuffer::put(Event e)
 {
     mutex->Wait();
-    buffer.push_back(randomChar);
+    if(buffer.size()==BufferSize-1)
+    {
+        e.randomChar='X';
+        buffer.push_back(e);
+        std::cout<<"Added buffer limit ending char X to vector, size = "<<buffer.size()<<std::endl;
+    }
+    else{
+    buffer.push_back(e);
+    }
     int size = buffer.size();
-    std::cout<<"Added to vector, size = "<<buffer.size()<<std::endl;
+    std::cout<<"Added "<< e.randomChar<<" to vector, size = "<<buffer.size()<<std::endl;
     mutex->Signal();
     sem->Signal();
     return size;
@@ -58,13 +64,7 @@ Event SafeBuffer::get()
     mutex->Wait();
     Event e = buffer.back();
     buffer.pop_back();
-    // if (e.randomChar!='X')
-    // {
-    //     count ++;
-    // }
     std::cout<<"Consumed from vector, size = "<<buffer.size()<<std::endl;
-    //std::cout<<"Non X values"<<count<<std::endl;
     mutex->Signal();
-    //locked->Wait();
     return e;
 }

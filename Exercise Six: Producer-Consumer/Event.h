@@ -27,7 +27,6 @@ class Event{
     public:
         Event();
         void consume();
-        char printRandomLetter();
         char randomChar;
 };
 /* Event.h ends here */

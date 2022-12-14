@@ -5,35 +5,26 @@
 #include <time.h>
 #include <random>
 #include <iostream>
-Semaphore mainMutex(1);
-char Event::printRandomLetter()
-{
-    char c;
-    int r;
-    srand (time(NULL));
-    r = rand() % 26;
-    c = 'a' + r;        
-    return c;
-}
 
 Event::Event (){
     randomChar='a'+rand()%26;
-    //mainMutex.Wait();
-    // randomChar=printRandomLetter();
-    // unsigned int microsecond = 1000000;
-    // usleep(1.0* microsecond);
     std::cout <<"Produced "<<randomChar<<std::endl;
-    //mainMutex.Signal();
 }
-
-void Event::consume()//convert Them to uppcase to check if consumed
+int count =0;
+void Event::consume()
 {
     char randomCharUpper = randomChar-32;    
     if (randomCharUpper=='X'){
-        std::cout << "Found X"<<std::endl;
+        //std::cout << "Found X"<<std::endl;
+        std::cout << "Consumed Count until X found = "<<count<<std::endl;
+        count =0;
 
     }
+    else{
+        count ++;
+    }
     std::cout << "Consumed = " <<randomCharUpper<<std::endl;
+    //count =0;
 
 }
 /* Event.h ends here */

@@ -7,10 +7,10 @@
 
 static const int num_threads = 30;
 const int size=20;
-Semaphore countMutex(size);
-Semaphore m(1);
-Semaphore m2(1);
-int count=0;
+Semaphore spaces(size);
+Semaphore mutex(1);
+Semaphore items(0);
+//int count=0;
 bool space=true;
 
 /*! \fn producer
@@ -20,12 +20,13 @@ bool space=true;
 void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
  
   for(int i=0;i<numLoops;++i){
-      m.Wait();
-      countMutex.Wait();
-      theBuffer->checkSize(size);
+      spaces.Wait();
+      mutex.Wait();
+      //theBuffer->checkSize(size);
       Event e;
       theBuffer->put(e);
-      m.Signal();
+      mutex.Signal();
+      items.Signal();
   }
 }
 
@@ -35,13 +36,14 @@ void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
 
 void consumer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i=0;i<numLoops;++i){
-    //Produce event and add to buffer
-    m2.Wait();
+    items.Wait();
+    mutex.Wait();
     Event e;
     e = theBuffer->get();
     e.consume();
-    countMutex.Signal();
-    m2.Signal();
+    mutex.Signal();
+    spaces.Signal();
+    
   }
 }
 
