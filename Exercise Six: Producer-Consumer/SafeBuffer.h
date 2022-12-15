@@ -51,6 +51,7 @@ class SafeBuffer
          * 
          */
         int BufferSize;
+        std::vector<char> Charbuffer;
 
     public:
         SafeBuffer(int size);

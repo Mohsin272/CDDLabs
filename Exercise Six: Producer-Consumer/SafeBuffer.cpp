@@ -15,6 +15,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Event.h"
+#include <map>
 /*! \page SafeBuffer
     \file SafeBuffer.cpp
     \author Mohsin Tahir
@@ -69,7 +70,23 @@ Event SafeBuffer::get()
     mutex->Wait();
     Event e = buffer.back();
     buffer.pop_back();
+    Charbuffer.push_back(e.randomChar);
+    if (e.randomChar=='X'){
+    // std::cout << "Number of chracters consumed until X found = "<<count<<std::endl;
+    // count =0;
+    std::cout <<"*********Found X in Buffer********"<<std::endl;
+    std::cout <<"CharBuffer size is "<<Charbuffer.size()<<std::endl;
+    std::map<char, int> count;
+    for(int i=0; i<Charbuffer.size(); i++) {
+        count[Charbuffer[i]]++;
+    }
+    for(const auto kvp : count) {
+        std::cout << kvp.first << " occurs " << kvp.second << " times\n";
+    }
+    }
+    else{
     std::cout<<"Consumed from vector, size = "<<buffer.size()<<std::endl;
+    }
     mutex->Signal();
     return e;
 }

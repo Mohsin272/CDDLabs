@@ -20,7 +20,6 @@ void producer(std::shared_ptr<SafeBuffer> theBuffer, int numLoops){
   for(int i=0;i<numLoops;++i){
       spaces.Wait();
       mutex.Wait();
-      //theBuffer->checkSize(size);
       Event e;
       theBuffer->put(e);
       mutex.Signal();
