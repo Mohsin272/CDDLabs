@@ -12,21 +12,16 @@
  * along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \page Event.h
-    \file Event.h
-    \author Mohsin Tahir 
-    \date 09/12/2022
-    \copyright This code is covered by the GNU General Public License v3.0
-    \name Event.h
-    Declaring the Event Object
-*/
-
 /* Code: */
 #pragma once
 class Event{ 
     public:
         Event();
         void consume();
+        /**
+         * @brief Object variable used to store the random char
+         * 
+         */
         char randomChar;
 };
 /* Event.h ends here */

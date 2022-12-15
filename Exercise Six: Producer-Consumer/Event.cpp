@@ -6,12 +6,18 @@
 #include <random>
 #include <iostream>
 #include <cctype>
-#include <map>
+/**
+ * @brief Construct a new Event:: Event object with a random letter
+ * 
+ */
 Event::Event (){
     randomChar='a'+rand()%26;
     std::cout <<"Produced "<<randomChar<<std::endl;
 }
-int count =0;
+/**
+ * @brief Fuction converts latter to uppercase and prints to screen when it has been consumed
+ * 
+ */
 void Event::consume()
 {
     char randomCharUpper = toupper(randomChar);    

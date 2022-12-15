@@ -100,32 +100,33 @@ $(document).ready(function(){initNavTree('SafeBuffer_8h_source.html',''); initRe
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * along with GNU Emacs.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* Code: */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8h.html">Event.h</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Semaphore_8h.html">Semaphore.h</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classSafeBuffer.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSafeBuffer.html">SafeBuffer</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        std::vector&lt;Event&gt; buffer;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        std::shared_ptr&lt;Semaphore&gt; mutex;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::shared_ptr&lt;Semaphore&gt; sem;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">int</span> BufferSize;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer</a>(<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">put</a>(<a class="code" href="classEvent.html">Event</a>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="classEvent.html">Event</a> <a class="code" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">get</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/* Code: */</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8h.html">Event.h</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Semaphore_8h.html">Semaphore.h</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classSafeBuffer.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSafeBuffer.html">SafeBuffer</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::vector&lt;Event&gt; buffer;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        std::shared_ptr&lt;Semaphore&gt; mutex;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::shared_ptr&lt;Semaphore&gt; sem;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">int</span> BufferSize;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::vector&lt;char&gt; Charbuffer;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer</a>(<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">put</a>(<a class="code" href="classEvent.html">Event</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classEvent.html">Event</a> <a class="code" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">get</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
 <div class="ttc" id="aEvent_8h_html"><div class="ttname"><a href="Event_8h.html">Event.h</a></div></div>
 <div class="ttc" id="aSemaphore_8h_html"><div class="ttname"><a href="Semaphore_8h.html">Semaphore.h</a></div></div>
-<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00026">Event.h:26</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html"><div class="ttname"><a href="classSafeBuffer.html">SafeBuffer</a></div><div class="ttdoc">Safe Buffer class definition.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00031">SafeBuffer.h:32</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_a851df5cf7679efec7e27ec99842b7177"><div class="ttname"><a href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a></div><div class="ttdeci">int put(Event)</div><div class="ttdoc">Method used to put an object to the buffer.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00047">SafeBuffer.cpp:47</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_a883f95ba075a1c0505be645c1d8ae4c0"><div class="ttname"><a href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a></div><div class="ttdeci">Event get()</div><div class="ttdoc">Method used to retreive the event from the back of the buffer.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00066">SafeBuffer.cpp:66</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_ab690cf4b2513286825ce710b96b992a7"><div class="ttname"><a href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a></div><div class="ttdeci">SafeBuffer(int size)</div><div class="ttdoc">Construct a new Safe Buffer:: Safe Buffer object.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00034">SafeBuffer.cpp:34</a></div></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00017">Event.h:17</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html"><div class="ttname"><a href="classSafeBuffer.html">SafeBuffer</a></div><div class="ttdoc">Safe Buffer class definition.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00023">SafeBuffer.h:24</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a851df5cf7679efec7e27ec99842b7177"><div class="ttname"><a href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a></div><div class="ttdeci">int put(Event)</div><div class="ttdoc">Method used to put an object to the buffer. Checks buffer size and places 'X' if limit is reached.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00037">SafeBuffer.cpp:37</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a883f95ba075a1c0505be645c1d8ae4c0"><div class="ttname"><a href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a></div><div class="ttdeci">Event get()</div><div class="ttdoc">Function to retrieve the last item placed on the buffer. If it is 'X' total number of letters consume...</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00061">SafeBuffer.cpp:61</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_ab690cf4b2513286825ce710b96b992a7"><div class="ttname"><a href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a></div><div class="ttdeci">SafeBuffer(int size)</div><div class="ttdoc">Construct a new Safe Buffer:: Safe Buffer object.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00025">SafeBuffer.cpp:25</a></div></div>
 <div class="ttc" id="amain_8cpp_html_aab938108caad0d0e47d6885b5ba2d23a"><div class="ttname"><a href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a></div><div class="ttdeci">const int size</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00009">main.cpp:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

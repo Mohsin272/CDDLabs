@@ -16,16 +16,6 @@
 #include <stdlib.h>
 #include "Event.h"
 #include <map>
-/*! \page SafeBuffer
-    \file SafeBuffer.cpp
-    \author Mohsin Tahir
-    \date 09/12/2022
-    \copyright This code is covered by the GNU General Public License v3.0
-    \name SafeBuffer implementation
-    \fn Put Method
-    \brief Method used to put an object to the buffer
-    Implementing the SafeBuffer
-*/
 
 /**
  * @brief Construct a new Safe Buffer:: Safe Buffer object
@@ -39,8 +29,7 @@ SafeBuffer::SafeBuffer(int size)
     BufferSize=size;
 }
 /**
- * \fn 
- * \brief Method used to put an object to the buffer
+ * @brief Method used to put an object to the buffer. Checks buffer size and places 'X' if limit is reached.
  * 
  * @param e Takes in an event object
  * @return int Returns the Size of the buffer after placement
@@ -63,7 +52,12 @@ int SafeBuffer::put(Event e)
     sem->Signal();
     return size;
 }
-
+/**
+ * @brief Function to retrieve the last item placed on the buffer. If it is 'X' total number of letters 
+ * consumed is printed.
+ * 
+ * @return Event 
+ */
 Event SafeBuffer::get()
 {
     sem->Wait();
@@ -72,10 +66,8 @@ Event SafeBuffer::get()
     buffer.pop_back();
     Charbuffer.push_back(e.randomChar);
     if (e.randomChar=='X'){
-    // std::cout << "Number of chracters consumed until X found = "<<count<<std::endl;
-    // count =0;
     std::cout <<"*********Found X in Buffer********"<<std::endl;
-    std::cout <<"CharBuffer size is "<<Charbuffer.size()<<std::endl;
+    std::cout <<"Total consumed characters are =  "<<Charbuffer.size()<<std::endl;
     std::map<char, int> count;
     for(int i=0; i<Charbuffer.size(); i++) {
         count[Charbuffer[i]]++;
@@ -83,6 +75,7 @@ Event SafeBuffer::get()
     for(const auto kvp : count) {
         std::cout << kvp.first << " occurs " << kvp.second << " times\n";
     }
+        Charbuffer.clear();
     }
     else{
     std::cout<<"Consumed from vector, size = "<<buffer.size()<<std::endl;

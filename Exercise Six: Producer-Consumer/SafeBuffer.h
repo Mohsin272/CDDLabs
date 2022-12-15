@@ -11,14 +11,6 @@
  * You should have received a copy of the GNU General Public License
  * along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*! \page SafeBuffer.h
-    \file SafeBuffer.h
-    \author Mohsin Tahir
-    \date 09/12/2022
-    \copyright This code is covered by the GNU General Public License v3.0
-    \name SafeBuffer.h
-    Declaring the SafeBuffer Object
-*/
 /* Code: */
 #pragma once
 #include "Event.h"
@@ -51,21 +43,15 @@ class SafeBuffer
          * 
          */
         int BufferSize;
+        /**
+         * @brief Vector of chars that stores all consumed letters
+         * 
+         */
         std::vector<char> Charbuffer;
 
     public:
         SafeBuffer(int size);
-        /**
-         * @brief Method used to put an object to the buffer
-         * 
-         * @return int Returns the Size of the buffer after placement
-         */
         int put(Event);
-        /**
-         * @brief Method used to retreive the event from the back of the buffer
-         * 
-         * @return Event 
-         */
         Event get();
 
 };

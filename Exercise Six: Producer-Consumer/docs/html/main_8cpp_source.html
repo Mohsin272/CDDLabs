@@ -105,67 +105,66 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;numLoops;++i){</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;      <a class="code" href="main_8cpp.html#a38af8e7c3e2cd0adac2877b5b34127f0">spaces</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <span class="comment">//theBuffer-&gt;checkSize(size);</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      <a class="code" href="classEvent.html">Event</a> e;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      theBuffer-&gt;put(e);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      <a class="code" href="main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd">items</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">   35</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a>(std::shared_ptr&lt;SafeBuffer&gt; theBuffer, <span class="keywordtype">int</span> numLoops){</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;numLoops;++i){</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd">items</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classEvent.html">Event</a> e;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    e = theBuffer-&gt;get();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    e.<a class="code" href="classEvent.html#ab57583f1d8975c19bd1c6448482d958d">consume</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="main_8cpp.html#a38af8e7c3e2cd0adac2877b5b34127f0">spaces</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   48</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  std::vector&lt;std::thread&gt; producers(num_threads);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  std::vector&lt;std::thread&gt; consumers(num_threads);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  std::shared_ptr&lt;SafeBuffer&gt; aBuffer( <span class="keyword">new</span> <a class="code" href="classSafeBuffer.html">SafeBuffer</a>(<a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">int</span> i=0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; prod: producers)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    prod=std::thread(<a class="code" href="main_8cpp.html#a3d0719b4bcba12452a2f7b9b40c6c6d9">producer</a>,aBuffer,10);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; cons: consumers)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cons=std::thread(<a class="code" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a>,aBuffer,10);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p :producers)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      p.join();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; c :consumers)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      c.join();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;Program Finished&quot;</span>&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <a class="code" href="classEvent.html">Event</a> e;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      theBuffer-&gt;put(e);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      <a class="code" href="main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd">items</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">   34</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a>(std::shared_ptr&lt;SafeBuffer&gt; theBuffer, <span class="keywordtype">int</span> numLoops){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;numLoops;++i){</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd">items</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Wait</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classEvent.html">Event</a> e;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    e = theBuffer-&gt;get();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    e.<a class="code" href="classEvent.html#ab57583f1d8975c19bd1c6448482d958d">consume</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="main_8cpp.html#a38af8e7c3e2cd0adac2877b5b34127f0">spaces</a>.<a class="code" href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Signal</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   47</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  std::vector&lt;std::thread&gt; producers(num_threads);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  std::vector&lt;std::thread&gt; consumers(num_threads);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  std::shared_ptr&lt;SafeBuffer&gt; aBuffer( <span class="keyword">new</span> <a class="code" href="classSafeBuffer.html">SafeBuffer</a>(<a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">int</span> i=0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; prod: producers)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    prod=std::thread(<a class="code" href="main_8cpp.html#a3d0719b4bcba12452a2f7b9b40c6c6d9">producer</a>,aBuffer,10);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">for</span>(std::thread&amp; cons: consumers)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    cons=std::thread(<a class="code" href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a>,aBuffer,10);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p :producers)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      p.join();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; c :consumers)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      c.join();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  std::cout &lt;&lt; <span class="stringliteral">&quot;Program Finished&quot;</span>&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
 <div class="ttc" id="aEvent_8h_html"><div class="ttname"><a href="Event_8h.html">Event.h</a></div></div>
 <div class="ttc" id="aSafeBuffer_8h_html"><div class="ttname"><a href="SafeBuffer_8h.html">SafeBuffer.h</a></div></div>
 <div class="ttc" id="aSemaphore_8h_html"><div class="ttname"><a href="Semaphore_8h.html">Semaphore.h</a></div></div>
-<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00026">Event.h:26</a></div></div>
-<div class="ttc" id="aclassEvent_html_ab57583f1d8975c19bd1c6448482d958d"><div class="ttname"><a href="classEvent.html#ab57583f1d8975c19bd1c6448482d958d">Event::consume</a></div><div class="ttdeci">void consume()</div><div class="ttdef"><b>Definition:</b> <a href="Event_8cpp_source.html#l00014">Event.cpp:14</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html"><div class="ttname"><a href="classSafeBuffer.html">SafeBuffer</a></div><div class="ttdoc">Safe Buffer class definition.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00031">SafeBuffer.h:32</a></div></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00017">Event.h:17</a></div></div>
+<div class="ttc" id="aclassEvent_html_ab57583f1d8975c19bd1c6448482d958d"><div class="ttname"><a href="classEvent.html#ab57583f1d8975c19bd1c6448482d958d">Event::consume</a></div><div class="ttdeci">void consume()</div><div class="ttdoc">Fuction converts latter to uppercase and prints to screen when it has been consumed.</div><div class="ttdef"><b>Definition:</b> <a href="Event_8cpp_source.html#l00021">Event.cpp:21</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html"><div class="ttname"><a href="classSafeBuffer.html">SafeBuffer</a></div><div class="ttdoc">Safe Buffer class definition.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00023">SafeBuffer.h:24</a></div></div>
 <div class="ttc" id="aclassSemaphore_html"><div class="ttname"><a href="classSemaphore.html">Semaphore</a></div><div class="ttdoc">A Semaphore Implementation.</div><div class="ttdef"><b>Definition:</b> <a href="Semaphore_8h_source.html#l00014">Semaphore.h:15</a></div></div>
 <div class="ttc" id="aclassSemaphore_html_a72aabebf026e3a8b1f3e4d0fa8ee1eda"><div class="ttname"><a href="classSemaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda">Semaphore::Wait</a></div><div class="ttdeci">void Wait()</div><div class="ttdef"><b>Definition:</b> <a href="Semaphore_8cpp_source.html#l00012">Semaphore.cpp:12</a></div></div>
 <div class="ttc" id="aclassSemaphore_html_a86f92f738b4486439b296d8e235895f2"><div class="ttname"><a href="classSemaphore.html#a86f92f738b4486439b296d8e235895f2">Semaphore::Signal</a></div><div class="ttdeci">void Signal()</div><div class="ttdef"><b>Definition:</b> <a href="Semaphore_8cpp_source.html#l00030">Semaphore.cpp:30</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a11dc2e311f7f799ced169981da64640d"><div class="ttname"><a href="main_8cpp.html#a11dc2e311f7f799ced169981da64640d">mutex</a></div><div class="ttdeci">Semaphore mutex(1)</div></div>
-<div class="ttc" id="amain_8cpp_html_a279a06d7a4fa4c1a824324bbd87e848d"><div class="ttname"><a href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a></div><div class="ttdeci">void consumer(std::shared_ptr&lt; SafeBuffer &gt; theBuffer, int numLoops)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00035">main.cpp:35</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a279a06d7a4fa4c1a824324bbd87e848d"><div class="ttname"><a href="main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d">consumer</a></div><div class="ttdeci">void consumer(std::shared_ptr&lt; SafeBuffer &gt; theBuffer, int numLoops)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00034">main.cpp:34</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a38af8e7c3e2cd0adac2877b5b34127f0"><div class="ttname"><a href="main_8cpp.html#a38af8e7c3e2cd0adac2877b5b34127f0">spaces</a></div><div class="ttdeci">Semaphore spaces(size)</div></div>
 <div class="ttc" id="amain_8cpp_html_a3d0719b4bcba12452a2f7b9b40c6c6d9"><div class="ttname"><a href="main_8cpp.html#a3d0719b4bcba12452a2f7b9b40c6c6d9">producer</a></div><div class="ttdeci">void producer(std::shared_ptr&lt; SafeBuffer &gt; theBuffer, int numLoops)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a5a20215d7f8752ae8eadfdef1ed7b1dd"><div class="ttname"><a href="main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd">items</a></div><div class="ttdeci">Semaphore items(0)</div></div>
-<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00048">main.cpp:48</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00047">main.cpp:47</a></div></div>
 <div class="ttc" id="amain_8cpp_html_aab938108caad0d0e47d6885b5ba2d23a"><div class="ttname"><a href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a></div><div class="ttdeci">const int size</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00009">main.cpp:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

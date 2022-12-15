@@ -26,9 +26,6 @@ var NAVTREE =
 [
   [ "Exercise Six: Producer-Consumer", "index.html", [
     [ "Lab 6: Producer and Consumers", "index.html", null ],
-    [ "Event.h", "Event_8h.html", null ],
-    [ "SafeBuffer", "SafeBuffer.html", null ],
-    [ "SafeBuffer.h", "SafeBuffer_8h.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
