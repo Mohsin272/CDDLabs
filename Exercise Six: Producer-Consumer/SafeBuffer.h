@@ -24,20 +24,47 @@
 #include "Event.h"
 #include "Semaphore.h"
 #include <vector>
-
+/**
+ * @brief Safe Buffer class definition
+ * 
+ */
 class SafeBuffer
 {
     private:
-        std::vector<Event> buffer; //vector will be used to store the characters
+        /**
+         * @brief Vector used as a buffer to hold random chraacters
+         * 
+         */
+        std::vector<Event> buffer;
+        /**
+         * @brief Semaphore used to ensure thread safe buffer 
+         * 
+         */
         std::shared_ptr<Semaphore> mutex;
+        /**
+         * @brief Second Semaphore used to make the buffer thread safe
+         * 
+         */
         std::shared_ptr<Semaphore> sem;
-        int count;
+        /**
+         * @brief Variable used to store the buffer size
+         * 
+         */
         int BufferSize;
 
     public:
         SafeBuffer(int size);
+        /**
+         * @brief Method used to put an object to the buffer
+         * 
+         * @return int Returns the Size of the buffer after placement
+         */
         int put(Event);
-        void checkSize(int size);
+        /**
+         * @brief Method used to retreive the event from the back of the buffer
+         * 
+         * @return Event 
+         */
         Event get();
 
 };

@@ -10,8 +10,6 @@ const int size=20;
 Semaphore spaces(size);
 Semaphore mutex(1);
 Semaphore items(0);
-//int count=0;
-bool space=true;
 
 /*! \fn producer
     \brief Creates events and adds them to buffer

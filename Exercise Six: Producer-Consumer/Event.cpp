@@ -5,7 +5,7 @@
 #include <time.h>
 #include <random>
 #include <iostream>
-
+#include <cctype>
 Event::Event (){
     randomChar='a'+rand()%26;
     std::cout <<"Produced "<<randomChar<<std::endl;
@@ -13,18 +13,13 @@ Event::Event (){
 int count =0;
 void Event::consume()
 {
-    char randomCharUpper = randomChar-32;    
+    char randomCharUpper = toupper(randomChar);    
     if (randomCharUpper=='X'){
-        //std::cout << "Found X"<<std::endl;
-        std::cout << "Consumed Count until X found = "<<count<<std::endl;
+        std::cout << "Number of chracters consumed until X found = "<<count<<std::endl;
         count =0;
-
     }
     else{
         count ++;
     }
-    std::cout << "Consumed = " <<randomCharUpper<<std::endl;
-    //count =0;
-
 }
 /* Event.h ends here */

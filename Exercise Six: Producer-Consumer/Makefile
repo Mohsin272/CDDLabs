@@ -14,7 +14,7 @@ CFLAGS= -std=c++11 -pthread
 	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
 ALL: main.o Semaphore.o SafeBuffer.o Event.o
-	$(CC) -o myexe main.o Semaphore.o SafeBuffer.o Event.o $(CFLAGS)  $(DEBUGFLAGS)
+	$(CC) -o prodCon main.o Semaphore.o SafeBuffer.o Event.o $(CFLAGS) $(DEBUGFLAGS)
 
 DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL

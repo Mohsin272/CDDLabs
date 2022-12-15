@@ -21,24 +21,29 @@
     \date 09/12/2022
     \copyright This code is covered by the GNU General Public License v3.0
     \name SafeBuffer implementation
+    \fn Put Method
+    \brief Method used to put an object to the buffer
     Implementing the SafeBuffer
 */
+
+/**
+ * @brief Construct a new Safe Buffer:: Safe Buffer object
+ * 
+ * @param size Defines the size of the buffer
+ */
 SafeBuffer::SafeBuffer(int size)
 {
     mutex = std::make_shared<Semaphore>(1);
     sem = std::make_shared<Semaphore>(0);
     BufferSize=size;
 }
-
-// void SafeBuffer::checkSize(int BufferSize){
-//     if (buffer.size()==BufferSize){
-//         Event e;
-//         e.randomChar='X';
-//         buffer.push_back(e);
-//         std::cout <<"BUffer LImit Reached Added X"<<std::endl;
-//     }
-// }
-
+/**
+ * \fn 
+ * \brief Method used to put an object to the buffer
+ * 
+ * @param e Takes in an event object
+ * @return int Returns the Size of the buffer after placement
+ */
 int SafeBuffer::put(Event e)
 {
     mutex->Wait();
