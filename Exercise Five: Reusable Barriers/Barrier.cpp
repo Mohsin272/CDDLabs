@@ -78,7 +78,6 @@ void Barrier::phase2()
 		innerdoor.Wait();
 		outerdoor.Signal();
 	}
-	//mutex.Signal();
 	outerdoor.Wait();
 	outerdoor.Signal();
 

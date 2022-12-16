@@ -14,7 +14,7 @@
 - **How to install project:**
 	- run `make` file in terminal
 	- run `./prodCon`
-    - run `make doc` to generate documentation
+    - run `make DOC` to generate documentation
 	
 - **List of any required Libraries, platform issues, etc.:**
 	- **Linux** - Environment

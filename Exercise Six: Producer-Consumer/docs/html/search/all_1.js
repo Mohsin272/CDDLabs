@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['event_2',['Event',['../classEvent.html',1,'Event'],['../classEvent.html#a5a40dd4708297f7031e29b39e039ae10',1,'Event::Event()']]],
-  ['event_2ecpp_3',['Event.cpp',['../Event_8cpp.html',1,'']]],
-  ['event_2eh_4',['Event.h',['../Event_8h.html',1,'']]]
+  ['charbuffer_2',['Charbuffer',['../classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72',1,'SafeBuffer']]],
+  ['consume_3',['consume',['../classEvent.html#ab57583f1d8975c19bd1c6448482d958d',1,'Event']]],
+  ['consumer_4',['consumer',['../main_8cpp.html#a279a06d7a4fa4c1a824324bbd87e848d',1,'main.cpp']]]
 ];

@@ -100,69 +100,80 @@ $(document).ready(function(){initNavTree('SafeBuffer_8cpp_source.html',''); init
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * along with GNU Emacs.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SafeBuffer_8h.html">SafeBuffer.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8h.html">Event.h</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">   25</a></span>&#160;<a class="code" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a>(<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    mutex = std::make_shared&lt;Semaphore&gt;(1);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    sem = std::make_shared&lt;Semaphore&gt;(0);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    BufferSize=<a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">   37</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a>(<a class="code" href="classEvent.html">Event</a> e)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    mutex-&gt;Wait();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span>(buffer.size()==BufferSize-1)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>=<span class="charliteral">&#39;X&#39;</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        buffer.push_back(e);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Added buffer limit ending char X to vector, size = &quot;</span>&lt;&lt;buffer.size()&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    buffer.push_back(e);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a> = buffer.size();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Added &quot;</span>&lt;&lt; e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>&lt;&lt;<span class="stringliteral">&quot; to vector, size = &quot;</span>&lt;&lt;buffer.size()&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    mutex-&gt;Signal();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    sem-&gt;Signal();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">   61</a></span>&#160;<a class="code" href="classEvent.html">Event</a> <a class="code" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a>()</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    sem-&gt;Wait();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    mutex-&gt;Wait();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classEvent.html">Event</a> e = buffer.back();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    buffer.pop_back();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    Charbuffer.push_back(e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> (e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>==<span class="charliteral">&#39;X&#39;</span>){</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::cout &lt;&lt;<span class="stringliteral">&quot;*********Found X in Buffer********&quot;</span>&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::cout &lt;&lt;<span class="stringliteral">&quot;Total consumed characters are =  &quot;</span>&lt;&lt;Charbuffer.size()&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::map&lt;char, int&gt; count;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Charbuffer.size(); i++) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        count[Charbuffer[i]]++;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> kvp : count) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::cout &lt;&lt; kvp.first &lt;&lt; <span class="stringliteral">&quot; occurs &quot;</span> &lt;&lt; kvp.second &lt;&lt; <span class="stringliteral">&quot; times\n&quot;</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        Charbuffer.clear();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Consumed from vector, size = &quot;</span>&lt;&lt;buffer.size()&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    mutex-&gt;Signal();</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> e;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Author Mohsin Tahir</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// License = This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 </span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// International License. To view a copy of this license, </span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, </span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// PO Box 1866, Mountain View, CA 94042, USA.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// Date 16/12/2022</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SafeBuffer_8h.html">SafeBuffer.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8h.html">Event.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">   31</a></span>&#160;<a class="code" href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a>(<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">mutex</a> = std::make_shared&lt;Semaphore&gt;(1);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classSafeBuffer.html#a5fae7c9685abfa99ac2a8853df40935c">sem</a> = std::make_shared&lt;Semaphore&gt;(0);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classSafeBuffer.html#ac5d6d60765b290a35b16231bf3099166">BufferSize</a>=<a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">   43</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a>(<a class="code" href="classEvent.html">Event</a> e)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">mutex</a>-&gt;Wait();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.size()==<a class="code" href="classSafeBuffer.html#ac5d6d60765b290a35b16231bf3099166">BufferSize</a>-1)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>=<span class="charliteral">&#39;X&#39;</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.push_back(e);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::cout&lt;&lt;<span class="stringliteral">&quot;Added buffer limit ending char X to vector, size = &quot;</span>&lt;&lt;<a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.size()&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.push_back(e);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a> = <a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.size();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Added &quot;</span>&lt;&lt; e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>&lt;&lt;<span class="stringliteral">&quot; to vector, size = &quot;</span>&lt;&lt;<a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.size()&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">mutex</a>-&gt;Signal();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classSafeBuffer.html#a5fae7c9685abfa99ac2a8853df40935c">sem</a>-&gt;Signal();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">   67</a></span>&#160;<a class="code" href="classEvent.html">Event</a> <a class="code" href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a>()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classSafeBuffer.html#a5fae7c9685abfa99ac2a8853df40935c">sem</a>-&gt;Wait();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">mutex</a>-&gt;Wait();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classEvent.html">Event</a> e = <a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.back();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.pop_back();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">Charbuffer</a>.push_back(e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (e.<a class="code" href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">randomChar</a>==<span class="charliteral">&#39;X&#39;</span>){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::cout &lt;&lt;<span class="stringliteral">&quot;*********Found X in Buffer********&quot;</span>&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::cout &lt;&lt;<span class="stringliteral">&quot;Total consumed characters are =  &quot;</span>&lt;&lt;<a class="code" href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">Charbuffer</a>.size()&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::map&lt;char, int&gt; count;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;<a class="code" href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">Charbuffer</a>.size(); i++) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        count[<a class="code" href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">Charbuffer</a>[i]]++;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> kvp : count) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        std::cout &lt;&lt; kvp.first &lt;&lt; <span class="stringliteral">&quot; occurs &quot;</span> &lt;&lt; kvp.second &lt;&lt; <span class="stringliteral">&quot; times\n&quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">Charbuffer</a>.clear();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::cout&lt;&lt;<span class="stringliteral">&quot;Consumed from vector, size = &quot;</span>&lt;&lt;<a class="code" href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">buffer</a>.size()&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">mutex</a>-&gt;Signal();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> e;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
 <div class="ttc" id="aEvent_8h_html"><div class="ttname"><a href="Event_8h.html">Event.h</a></div></div>
 <div class="ttc" id="aSafeBuffer_8h_html"><div class="ttname"><a href="SafeBuffer_8h.html">SafeBuffer.h</a></div></div>
-<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00017">Event.h:17</a></div></div>
-<div class="ttc" id="aclassEvent_html_ab3a7f6f5dc206be3121b4784bef29fd9"><div class="ttname"><a href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">Event::randomChar</a></div><div class="ttdeci">char randomChar</div><div class="ttdoc">Object variable used to store the random char.</div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00025">Event.h:25</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_a851df5cf7679efec7e27ec99842b7177"><div class="ttname"><a href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a></div><div class="ttdeci">int put(Event)</div><div class="ttdoc">Method used to put an object to the buffer. Checks buffer size and places 'X' if limit is reached.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00037">SafeBuffer.cpp:37</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_a883f95ba075a1c0505be645c1d8ae4c0"><div class="ttname"><a href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a></div><div class="ttdeci">Event get()</div><div class="ttdoc">Function to retrieve the last item placed on the buffer. If it is 'X' total number of letters consume...</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00061">SafeBuffer.cpp:61</a></div></div>
-<div class="ttc" id="aclassSafeBuffer_html_ab690cf4b2513286825ce710b96b992a7"><div class="ttname"><a href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a></div><div class="ttdeci">SafeBuffer(int size)</div><div class="ttdoc">Construct a new Safe Buffer:: Safe Buffer object.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00025">SafeBuffer.cpp:25</a></div></div>
-<div class="ttc" id="amain_8cpp_html_aab938108caad0d0e47d6885b5ba2d23a"><div class="ttname"><a href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a></div><div class="ttdeci">const int size</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00009">main.cpp:9</a></div></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00022">Event.h:22</a></div></div>
+<div class="ttc" id="aclassEvent_html_ab3a7f6f5dc206be3121b4784bef29fd9"><div class="ttname"><a href="classEvent.html#ab3a7f6f5dc206be3121b4784bef29fd9">Event::randomChar</a></div><div class="ttdeci">char randomChar</div><div class="ttdoc">Object variable used to store the random char.</div><div class="ttdef"><b>Definition:</b> <a href="Event_8h_source.html#l00030">Event.h:30</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a450b1596a96013edb9157fa3a5fdb0c0"><div class="ttname"><a href="classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0">SafeBuffer::buffer</a></div><div class="ttdeci">std::vector&lt; Event &gt; buffer</div><div class="ttdoc">Vector used as a buffer to hold random chraacters.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00036">SafeBuffer.h:36</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a5fae7c9685abfa99ac2a8853df40935c"><div class="ttname"><a href="classSafeBuffer.html#a5fae7c9685abfa99ac2a8853df40935c">SafeBuffer::sem</a></div><div class="ttdeci">std::shared_ptr&lt; Semaphore &gt; sem</div><div class="ttdoc">Second Semaphore used to make the buffer thread safe.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00046">SafeBuffer.h:46</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a7f90950b182359904348ff978ebb96c6"><div class="ttname"><a href="classSafeBuffer.html#a7f90950b182359904348ff978ebb96c6">SafeBuffer::mutex</a></div><div class="ttdeci">std::shared_ptr&lt; Semaphore &gt; mutex</div><div class="ttdoc">Semaphore used to ensure thread safe buffer.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00041">SafeBuffer.h:41</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a851df5cf7679efec7e27ec99842b7177"><div class="ttname"><a href="classSafeBuffer.html#a851df5cf7679efec7e27ec99842b7177">SafeBuffer::put</a></div><div class="ttdeci">int put(Event)</div><div class="ttdoc">Method used to put an object to the buffer. Checks buffer size and places 'X' if limit is reached.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00043">SafeBuffer.cpp:43</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_a883f95ba075a1c0505be645c1d8ae4c0"><div class="ttname"><a href="classSafeBuffer.html#a883f95ba075a1c0505be645c1d8ae4c0">SafeBuffer::get</a></div><div class="ttdeci">Event get()</div><div class="ttdoc">Function to retrieve the last item placed on the buffer. If it is 'X' total number of letters consume...</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00067">SafeBuffer.cpp:67</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_ab690cf4b2513286825ce710b96b992a7"><div class="ttname"><a href="classSafeBuffer.html#ab690cf4b2513286825ce710b96b992a7">SafeBuffer::SafeBuffer</a></div><div class="ttdeci">SafeBuffer(int size)</div><div class="ttdoc">Construct a new Safe Buffer:: Safe Buffer object.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8cpp_source.html#l00031">SafeBuffer.cpp:31</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_ac5d6d60765b290a35b16231bf3099166"><div class="ttname"><a href="classSafeBuffer.html#ac5d6d60765b290a35b16231bf3099166">SafeBuffer::BufferSize</a></div><div class="ttdeci">int BufferSize</div><div class="ttdoc">Variable used to store the buffer size.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00051">SafeBuffer.h:51</a></div></div>
+<div class="ttc" id="aclassSafeBuffer_html_ac8c80bd5de5484d38e2b10f98a9fad72"><div class="ttname"><a href="classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72">SafeBuffer::Charbuffer</a></div><div class="ttdeci">std::vector&lt; char &gt; Charbuffer</div><div class="ttdoc">Vector of chars that stores all consumed letters.</div><div class="ttdef"><b>Definition:</b> <a href="SafeBuffer_8h_source.html#l00056">SafeBuffer.h:56</a></div></div>
+<div class="ttc" id="amain_8cpp_html_aab938108caad0d0e47d6885b5ba2d23a"><div class="ttname"><a href="main_8cpp.html#aab938108caad0d0e47d6885b5ba2d23a">size</a></div><div class="ttdeci">const int size</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00015">main.cpp:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

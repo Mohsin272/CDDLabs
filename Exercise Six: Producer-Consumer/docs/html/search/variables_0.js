@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['items_47',['items',['../main_8cpp.html#a5a20215d7f8752ae8eadfdef1ed7b1dd',1,'main.cpp']]]
+  ['buffer_54',['buffer',['../classSafeBuffer.html#a450b1596a96013edb9157fa3a5fdb0c0',1,'SafeBuffer']]],
+  ['buffersize_55',['BufferSize',['../classSafeBuffer.html#ac5d6d60765b290a35b16231bf3099166',1,'SafeBuffer']]]
 ];

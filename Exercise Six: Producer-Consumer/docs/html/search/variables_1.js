@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mutex_48',['mutex',['../main_8cpp.html#a11dc2e311f7f799ced169981da64640d',1,'main.cpp']]]
+  ['charbuffer_56',['Charbuffer',['../classSafeBuffer.html#ac8c80bd5de5484d38e2b10f98a9fad72',1,'SafeBuffer']]]
 ];
